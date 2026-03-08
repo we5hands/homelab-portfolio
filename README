@@ -1,0 +1,268 @@
+# Cybersecurity Home Lab
+
+## Overview
+
+This project documents my personal cybersecurity home lab environment built to simulate a small enterprise network. The lab is designed for hands-on experimentation with network segmentation, firewall configuration, virtualization, and security tooling.
+
+The environment is centered around a **pfSense firewall** integrated with a **managed Netgear switch** using **802.1Q VLAN segmentation**. Multiple isolated network segments are used to separate device types and provide a safe testing environment for security research and infrastructure experimentation.
+
+This lab allows me to practice real-world skills in:
+
+* Network security
+* Firewall configuration
+* VLAN segmentation
+* Infrastructure management
+* Virtualization environments
+* Security monitoring and filtering
+
+---
+
+# Network Architecture
+
+The home lab network uses pfSense as the edge firewall and router. A managed Netgear switch provides VLAN segmentation across multiple network segments.
+
+Traffic flows from the internet through pfSense before reaching internal networks. Each VLAN is isolated and controlled using firewall rules.
+
+```
+Internet
+   │
+ISP Modem
+   │
+pfSense Firewall
+   │
+Managed Switch (Netgear)
+   │
+────────────────────────
+VLAN 10 – Workstation Network
+VLAN 20 – Gaming Network
+VLAN 30 – Media Devices
+VLAN 40 – WiFi Network
+VLAN 50 – Virtualization Lab
+VLAN 99 – Management Network
+────────────────────────
+         │
+       Proxmox
+         │
+   Virtual Machines
+```
+
+This architecture mirrors common enterprise network design where the firewall controls routing and security while the switch handles VLAN segmentation.
+
+---
+
+# Network Segmentation
+
+The network is divided into multiple logical segments to isolate device categories and limit lateral movement between networks.
+
+| VLAN                   | Network Purpose                      |
+| ---------------------- | ------------------------------------ |
+| Default LAN            | Standard trusted network             |
+| PC Network             | Primary workstation environment      |
+| Xbox Network           | Gaming device network                |
+| Media Network          | Streaming devices such as Roku       |
+| WiFi Network           | Wireless clients                     |
+| Proxmox Infrastructure | Virtualization and lab environment   |
+| Management Network     | Infrastructure management interfaces |
+
+Segmentation allows testing firewall rules and improves network security by isolating device groups.
+
+---
+
+# Firewall Infrastructure
+
+The network is secured using **pfSense Community Edition**, acting as the primary firewall and gateway between the internet and internal networks.
+
+## Features Implemented
+
+* VLAN routing
+* Stateful firewall rules
+* DHCP services
+* Network Address Translation
+* Threat intelligence filtering
+* DNS-based blocking
+
+---
+
+# pfSense Configuration
+
+## Firewall Rules
+
+Firewall policies are applied per network segment to control traffic between VLANs and the internet.
+
+Example security policies include:
+
+* Allowing outbound internet access
+* Restricting inter-VLAN communication
+* Protecting management networks
+* Controlling lab environment access
+
+---
+
+## DHCP Infrastructure
+
+pfSense provides centralized DHCP services for multiple internal networks.
+
+DHCP services allow devices to automatically receive IP configuration while maintaining centralized network management.
+
+Example DHCP configurations include:
+
+* LAN DHCP
+* Workstation Network DHCP
+* WiFi Network DHCP
+
+---
+
+## pfBlockerNG Threat Filtering
+
+The firewall includes **pfBlockerNG**, which provides DNSBL filtering and threat intelligence blocking.
+
+pfBlockerNG helps protect the network by blocking:
+
+* malicious IP addresses
+* tracking domains
+* known malware distribution networks
+* advertising domains
+
+This adds an additional security layer to the lab environment.
+
+---
+
+## Network Address Translation
+
+pfSense handles outbound NAT for all internal VLAN networks, allowing private networks to access the internet while maintaining address isolation.
+
+Hybrid outbound NAT is used to allow both automatic and manual rule control.
+
+---
+
+# Managed Switch Configuration
+
+The network uses a **Netgear managed switch** configured with **Advanced 802.1Q VLAN mode**.
+
+The switch handles VLAN tagging and forwards traffic to pfSense for routing and security enforcement.
+
+## VLAN Configuration
+
+| VLAN ID | Name    | Purpose                       |
+| ------- | ------- | ----------------------------- |
+| 1       | Default | Default switch network        |
+| 10      | PC      | Workstation network           |
+| 20      | Xbox    | Gaming devices                |
+| 30      | Roku    | Streaming devices             |
+| 50      | Proxmox | Virtualization infrastructure |
+
+## Port Configuration
+
+| Port   | Purpose                        |
+| ------ | ------------------------------ |
+| Port 1 | Trunk link to pfSense firewall |
+| Port 2 | Workstation network            |
+| Port 3 | Xbox network                   |
+| Port 4 | Media device network           |
+| Port 6 | Proxmox server                 |
+
+Using a trunk port allows multiple VLANs to travel between the switch and firewall over a single physical connection.
+
+---
+
+# Virtualization Environment
+
+The lab includes a **Proxmox virtualization server** connected to a dedicated VLAN.
+
+This environment is used for security testing and lab experimentation.
+
+Typical lab machines include:
+
+* penetration testing systems
+* vulnerable test machines
+* Windows environments
+* security monitoring tools
+
+The virtualization platform allows rapid creation of isolated testing environments.
+
+---
+
+# Security Objectives
+
+This home lab was built to support hands-on learning in the following areas:
+
+Network security architecture
+Firewall rule design
+VLAN segmentation
+Threat intelligence filtering
+Infrastructure management
+Virtualization environments
+Security testing and experimentation
+
+---
+
+# Screenshots
+
+## pfSense Dashboard
+
+![pfSense Dashboard]()
+
+---
+
+## Firewall Rules
+
+![Firewall Rules]()
+
+---
+
+## DHCP Configuration
+
+![DHCP Configuration]()
+
+---
+
+## pfBlockerNG Configuration
+
+![pfBlockerNG]()
+
+---
+
+## NAT Configuration
+
+![NAT Rules]()
+
+---
+
+## Gateway Configuration
+
+![Gateway Settings]()
+
+---
+
+## Managed Switch VLAN Configuration
+
+![Netgear VLANs]()
+
+---
+
+# Security Notice
+
+To protect personal infrastructure, screenshots and diagrams in this repository use sanitized network information. Internal IP addresses and identifying details have been partially redacted while preserving the architectural design of the environment.
+
+---
+
+# Future Improvements
+
+Planned expansions for this lab include:
+
+* Red Team / Blue Team testing environment
+* SIEM logging and monitoring
+* IDS/IPS deployment
+* Active Directory lab environment
+* vulnerability scanning
+* attack simulation exercises
+
+---
+
+# Author
+
+Nick Hands
+Cybersecurity Student
+Frostburg State University
+
+This project is part of my cybersecurity learning portfolio and demonstrates practical experience with enterprise-style network infrastructure.
