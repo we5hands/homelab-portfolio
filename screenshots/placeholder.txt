@@ -1,0 +1,1 @@
+This folder stores screenshots for the homelab documentation.
