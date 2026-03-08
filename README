@@ -198,47 +198,48 @@ Security testing and experimentation
 
 # Screenshots
 
-## pfSense Dashboard
-
-![pfSense Dashboard]()
-
----
-
-## Firewall Rules
-
-![Firewall Rules]()
+## pfSense Interface Layout
+![Interfaces](screenshots/interfaceslayout.png)
 
 ---
 
-## DHCP Configuration
-
-![DHCP Configuration]()
-
----
-
-## pfBlockerNG Configuration
-
-![pfBlockerNG]()
+## Firewall Rules – PC Network
+![Firewall PC](screenshots/firewallrulespc.png)
 
 ---
 
-## NAT Configuration
-
-![NAT Rules]()
+## Firewall Rules – LAN Network
+![Firewall LAN](screenshots/firewallruleslan.png)
 
 ---
 
-## Gateway Configuration
+## Firewall Rules – Proxmox Network
+![Firewall Proxmox](screenshots/firewallrulesproxmox.png)
 
-![Gateway Settings]()
+---
+
+## pfBlockerNG Ad Blocking
+![pfBlockerNG](screenshots/firewalladblocker.png)
+
+---
+
+## DHCP Server – LAN
+![DHCP LAN](screenshots/dhcpserverlan.png)
+
+---
+
+## DHCP Server – PC
+![DHCP PC](screenshots/dhcpserverpc.png)
+
+---
+
+## DHCP Server – Proxmox
+![DHCP Proxmox](screenshots/dhcpserverproxmox.png)
 
 ---
 
 ## Managed Switch VLAN Configuration
-
-![Netgear VLANs]()
-
----
+![Netgear Switch](screenshots/netgeardash.png)
 
 # Security Notice
 
